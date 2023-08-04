@@ -5,7 +5,7 @@
 #include <SPI.h>
 #include <SD.h>
 #include "RTClib.h"
-# define button_pin 6
+# define button_pin 5
 //Defining the pins for the lcd
 #define RST 12
 #define CE 11
