@@ -48,18 +48,17 @@ void setup() {
     Serial.println("Failed to initialize ADS.");
   }
   
-  //rtc.begin(); //RTC
+  rtc.begin(); //RTC
 
   lcd.print("Please Wait ...");
   delay(1000);
   lcd.clear();
 
-  //if (!SD.begin(chipSelect)) {
-    //Serial.println("Card failed, or not present");
-    //// don't do anything more:
-    //while (1);
- // }
-  //Serial.println("card initialized.");
+  if (!SD.begin(chipSelect)) {
+    Serial.println("Card failed, or not present");
+    while (1);
+  }
+  Serial.println("card initialized.");
 }
 
 void loop() {
@@ -86,21 +85,21 @@ void loop() {
   lcd.println(sensors.getTempCByIndex(0));
   lcd.setCursor(0, 3);
   lcd.print("Bat: ");
- // lcd.print(battery());
+  lcd.print(battery());
 
-  //if (digitalRead(button_pin)== HIGH)
-    //store(measure(volts0,temperature), volts0, temperature);  
+  if (digitalRead(button_pin)== HIGH)
+    store(measure(volts0,temperature), volts0, temperature);  
 delay(1000);
 }
 
-/*float battery(){
+float battery(){
   float measuredvbat = analogRead(VBATPIN);
   measuredvbat *= 2;    // we divided by 2, so multiply back
   measuredvbat *= 3.3;  // Multiply by 3.3V, our reference voltage
   measuredvbat /= 1024; // convert to voltage
   Serial.print("VBat: " ); Serial.println(measuredvbat);
   return(measuredvbat);
-}*/
+}
 
 float measure(float volts, float temp){
   float pH=0;
@@ -121,7 +120,7 @@ float measure(float volts, float temp){
   return pH;
 }
 
-/*void store(float pH, float volts,float temp){
+void store(float pH, float volts,float temp){
 
   myFile = SD.open("pH.txt", FILE_WRITE);
   // if the file opened okay, write to it:
@@ -154,4 +153,4 @@ float measure(float volts, float temp){
     // if the file didn't open, print an error:
     Serial.println("error opening test.txt");
   }
-}*/
+}
