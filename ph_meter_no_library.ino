@@ -9,9 +9,9 @@
 //Defining the pins for the lcd
 #define RST 12
 #define CE 11
-#define DC 10
-#define DIN 9
-#define CLK 13
+#define DC A1
+#define DIN A2
+#define CLK A3
 #define VBATPIN A9
 
 Nokia_5110 lcd = Nokia_5110(RST, CE, DC, DIN, CLK);
